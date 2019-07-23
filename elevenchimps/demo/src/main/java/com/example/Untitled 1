@@ -1,0 +1,39 @@
+Desafio: 
+Implementar o micro serviço da Eleven Chimps (EC) que será responsável pelo cálculo de preço de uma dieta canina, expondo API REST. 
+
+A EC tem como diferencial a produção de comida saudável e
+nutritiva para cachorros. Todas as dietas são produzidas com alimentos frescos e entregues para os clientes em porções personalizadas.
+A EC trabalha no modelo de assinatura com ciclos mensais. 
+Levando em consideração que temos mais de 60 dietas em nosso menu,
+seu desafio será desenvolver um micro serviço (expondo API RESTful) consistente e escalável 
+para o cálculo do preço da dieta de um cachorro. Para o cálculo do preço, precisamos inicialmente
+de quanta energia o cachorro consome (em kcal) e a equivalência "caloria vs grama" de cada dieta. 
+
+A fórmula do cálculo do preço por quilo de uma dieta é a seguinte: 
+f(x) = if(((a*(t-m))(0,75^x) + a*m)>=m;((a*(t-m))(0,75^x) + a*m); m) 
+onde: x = quantidade a ser produzida no mês (em quilos) 
+a = coeficiente para cálculo do preço (decimal 0.00 < a <= 1.00)
+ m = preço mínimo do quilo da dieta (decimal) 
+ t = preço máximo do quilo da dieta (decimal) 
+Após o cálculo do preço por quilo, esse valor deve ser multiplicado pela quantidade em quilos a ser produzida. 
+
+Exemplo: 
+10 preço mínimo (m) 
+20 preço máximo (t) 
+0,9 fator (a) 
+4 quilos por mês (x) 
+11,85 preço do quilo 
+47,40 preço da dieta 
+
+Considerações: 
+1. A entidade Dieta possui dentre seus atributos: 
+- calorias por grama: quantas kcal 1 grama dessa dieta possui
+ - coeficiente:
+ coeficiente utilizado para o cálculo do preço 
+ 
+2. Preço mínimo e máximo devem ser parametrizáveis e inicialmente configurados com R$ 10,00
+e R$ 20,00 respectivamente. (não é por dieta)
+Entrega:
+- Código fonte disponibilizado em repositório git (pessoal).
+- A implementação poderá ser feita em Java, Kotlin ou Javascript.
+- Qualquer banco de dados relacional ou não relacional (se necessário)
